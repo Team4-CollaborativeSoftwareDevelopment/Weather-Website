@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Website</title>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">WeatherApp Team4</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation bar -->
+
+    <div class="container">
+        <div class="current-info">
+            <div class="date-container">
+                <div class="time" id="time">
+                    00:00 <span id="am-pm">PM</span>
+                </div>
+                <div class="date" id="date">
+                    ,
+                </div>
+                <div class="others" id="current-weather-items">
+                </div>
+            </div>
+            <div class="place-container">
+                <div class="search-box">
+                    <button   id="button-search" class ="btn-search"><i class="fas fa-search"></i></button>
+                    <input type="text"  id="input-search"  class="input-search" placeholder="Search city...">
+                </div>
+                <div class="location-info">
+                    <div class="time-zone" id="time-zone">Asia/</div>
+                    <div id="country" class="country"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="future-forecast">
+        <div class="today" id="current-temp">
+            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+            <div class="other">
+                <div class="day">Monday</div>
+                <div class="temp1">Day - 35.6&#176; C</div>
+            </div>
+        </div>
+
+        <div class="weather-forecast" id="weather-forecast">
+            <div class="weather-forecast-item">
+                <div class="day">Tue</div>
+                <img src="" alt="weather icon" class="w-icon">
+                <div class="temp">Night - &#176; C</div>
+                <div class="temp">Day - &#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Wed</div>
+                <img src="" alt="weather icon" class="w-icon">
+                <div class="temp">Night - &#176; C</div>
+                <div class="temp">Day - &#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Thur</div>
+                <img src="" alt="weather icon" class="w-icon">
+                <div class="temp">Night - &#176; C</div>
+                <div class="temp">Day - &#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Fri</div>
+                <img src="" alt="weather icon" class="w-icon">
+                <div class="temp">Night - &#176; C</div>
+                <div class="temp">Day - &#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Sat</div>
+                <img src="" alt="weather icon" class="w-icon">
+                <div class="temp">Night - &#176; C</div>
+                <div class="temp">Day - &#176; C</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card2 card2-right">
+        <div class="container">
+            <div class="others" id="current-weather-items2"></div>
+        </div>
+    </div>
+    
+    <div class="container2">
+        <div class="card mb-4" style="border-radius: 25px;">
+            <div class="card-body p-4">
+    
+              <div id="demo2" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ul class="carousel-indicators mb-0">
+                  <li data-target="#demo2" data-slide-to="0"></li>
+                  <li data-target="#demo2" data-slide-to="1" class="active"></li>
+                  <li data-target="#demo2" data-slide-to="2"></li>
+                </ul>
+                <!-- Carousel inner -->
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
+                      <div class="flex-column">
+                        <p class="small"><strong>21°C</strong></p>
+                        <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
+                        <p class="mb-0"><strong>12:00</strong></p>
+                        <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                      </div>
+                      <div class="flex-column">
+                        <p class="small"><strong>2°C</strong></p>
+                        <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
+                        <p class="mb-0"><strong>1:00</strong></p>
+                        <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                      </div>
+                      <div class="flex-column">
+                        <p class="small"><strong>20°C</strong></p>
+                        <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
+                        <p class="mb-0"><strong>2:00</strong></p>
+                        <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                      </div>
+                      <div class="flex-column">
+                        <p class="small"><strong>19°C</strong></p>
+                        <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
+                        <p class="mb-0"><strong>3:00</strong></p>
+                        <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                      </div>
+                      <div class="flex-column">
+                        <p class="small"><strong>18°C</strong></p>
+                        <i class="fas fa-cloud-showers-heavy fa-2x mb-3" style="color: #ddd;"></i>
+                        <p class="mb-0"><strong>4:00</strong></p>
+                        <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+ 
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

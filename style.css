@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+/* navigation bar design */
+.custom-navbar {
+  max-height: 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-item .nav-link {
+  margin-right: 20px;
+}
+
+
+/* Adjust the navbar breakpoint */
+@media (max-width: 992px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      transition: left 0.3s ease-in-out;
+    }
+  
+    .navbar-collapse.show {
+      left: 0;
+    }
+  
+    .navbar-nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8); 
+    }
+  
+    .nav-item {
+      margin-bottom: 15px;
+    }
+  
+    .navbar-toggler {
+      display: block;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+    }
+  }
+  
+
+  
+/* End of navigation bar design */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to right, #935CA9, #7363C5);
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.current-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.date-container {
+  font-weight: 100;
+}
+
+.date-container .time {
+  font-size: 70px;
+}
+
+.date-container #am-pm {
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.date-container .date {
+  font-size: 30px;
+}
+
+.place-container {
+  text-align: end;
+}
+
+.place-container .time-zone {
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.place-container .country {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.current-info .others {
+  display: flex;
+  flex-direction: column;
+  background: rgba(24, 24, 27, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+}
+
+.current-info .others .weather-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.future-forecast {
+  background-color: rgba(24, 24, 27, 0.8);
+  padding: 15px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  max-width: 993px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.future-forecast .today {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding-right: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  max-height: 110px;
+}
+
+.w-icon-small {
+  width: 100px; 
+  height: 100px; 
+}
+
+.future-forecast .today .day {
+  padding: 3px 10px;
+  background: #3c3c44;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.future-forecast .today .temp {
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.future-forecast .weather-forecast {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.weather-forecast .weather-forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.weather-forecast .weather-forecast-item .day {
+  padding: 3px 10px;
+  background: #3c3c44;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.weather-forecast .weather-forecast-item .temp {
+  font-weight: 100;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 730px) {
+  .future-forecast {
+    justify-content: start;
+    align-items: none;
+    overflow-y: scroll;
+    max-width: 100%;
+    width: calc(100% - 40px);
+    left: 20px;
+  }
+}
+
+.card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 200px;
+  height: 100px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.card2-right {
+  margin-left: auto;
+  margin-right: 100px;
+}
+
+.card2:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+
+.place-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* .city-input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 10px;
+} */
+
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  background: rgba(0, 0, 0, 0.6);
+  padding-right: 40px;
+  color:#fff;
+  margin-right: 10px;
+}
+.input-search::placeholder{
+  color:rgba(255,255,255,.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin-right: 9px;
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color:#ffffff ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+
+
+  
+  .carousel-indicators li {
+  background-color: #c061ff7a;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 4px;
+  }
+
+  .container2{
+    display: flex;
+    justify-content: flex-end;
+    
+  }
+  .card {
+  
+    margin-right: 80px;
+    margin-top: 10px;
+    max-width: 390px !important;
+    width: 100% !important;
+    height: 240px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border:  1px solid white;
+  }
+  
