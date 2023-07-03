@@ -59,16 +59,22 @@
   padding: 0;
 }
 
+.active{
+  /* background-color: white; */
+}
+
 body {
   background: linear-gradient(to right, #935CA9, #7363C5);
   font-family: 'Poppins', sans-serif;
 }
 
 .container {
+  /* background-color: aqua; */
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   color: #fff;
+  
 }
 
 .current-info {
@@ -123,15 +129,28 @@ body {
   justify-content: space-between;
 }
 
+.mid-container {
+  /* background-color: aqua; */
+  display: flex;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.mid-container .card2 {
+  height: 12rem;
+}
+
 .future-forecast {
   background-color: rgba(24, 24, 27, 0.8);
   padding: 15px;
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
+  margin-right: 10px;
+  /* position: fixed; */
+  /* bottom: 20px; */
+  /* left: 20px; */
+  /* margin-left: 50px; */
   color: white;
-  max-width: 993px;
-  width: 100%;
+  /* max-width: 993px; */
+  width: 70%;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -147,10 +166,10 @@ body {
   max-height: 110px;
 }
 
-.w-icon-small {
+/* .w-icon-small {
   width: 100px; 
   height: 100px; 
-}
+} */
 
 .future-forecast .today .day {
   padding: 3px 10px;
@@ -160,7 +179,7 @@ body {
   font-size: 14px;
 }
 
-.future-forecast .today .temp {
+.future-forecast .today .temp1 {
   font-size: 16px;
   padding-top: 10px;
 }
@@ -195,6 +214,32 @@ body {
   font-weight: 100;
   font-size: 12px;
 }
+
+.container-2{
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin:20px 20px ;
+  padding: 10px 10px;
+  color: #fff;
+  border:  1px solid white;
+}
+
+.hourly-card{
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 30%;
+  padding: 0px 20px;
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+
 
 @media only screen and (max-width: 730px) {
   .future-forecast {
@@ -347,11 +392,22 @@ body {
     margin-right: 80px;
     margin-top: 10px;
     max-width: 390px !important;
-    width: 100% !important;
-    height: 240px;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    border:  1px solid white;
+    width: 100% !important; 
   }
+
+  @media only screen and (max-width: 690px) {
+    .mid-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .future-forecast {
+      margin-bottom: 20px;
+    }
+  }
+
+
   

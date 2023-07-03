@@ -11,21 +11,44 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const API_KEY = '698e13e565fa42bf8d93b2e10f39fc6e';
+let geoLocation = null
+let longitude = null
+let latitude = null
+
+
+setInterval(() => { 
+  if(geoLocation){
+    getDynamicData(latitude,longitude)
+  }
+},1000)
+
+function getDynamicData(lat,lon) {
+  fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${API_KEY}`)
+  .then(res => res.json())
+  .then(data => {
+    getFormattedDate(data.current.dt, data.timezone);
+  })
+  .catch(error => {
+    console.log('Error fetching weather data:', error);
+  });
+}
+
 
 setInterval(() => {
-  const time = new Date();
-  const month = time.getMonth();
-  const date = time.getDate();
-  const day = time.getDay();
-  const hour = time.getHours();
-  const hoursIn12HrFormat = hour >= 13 ? hour % 12 : hour;
-  const minutes = time.getMinutes();
-  const ampm = hour >= 12 ? 'PM' : 'AM';
-
-  timeEl.innerHTML = (hoursIn12HrFormat < 10 ? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + `<span id="am-pm">${ampm}</span>`;
-
-  dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
-
+  if(!geoLocation){
+    const time = new Date();
+    const month = time.getMonth();
+    const date = time.getDate();
+    const day = time.getDay();
+    const hour = time.getHours();
+    const hoursIn12HrFormat = hour >= 13 ? hour % 12 : hour;
+    const minutes = time.getMinutes();
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+  
+    timeEl.innerHTML = (hoursIn12HrFormat < 10 ? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + `<span id="am-pm">${ampm}</span>`;
+  
+    dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
+  }
 }, 1000);
 
 getWeatherData();
@@ -34,10 +57,9 @@ function getWeatherData() {
   navigator.geolocation.getCurrentPosition((success) => {
     let { latitude, longitude } = success.coords;
 
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&units=metric&appid=${API_KEY}`)
       .then(res => res.json())
       .then(data => {
-        //console.log(data);
         showWeatherData(data);
       })
       .catch(error => {
@@ -51,6 +73,7 @@ function showWeatherData(data) {
 
   timezone.innerHTML = data.timezone;
   countryEl.innerHTML = data.lat + 'N ' + data.lon + 'E';
+
 
   currentWeatherItemsEl.innerHTML =
     `<div class="weather-item">
@@ -93,22 +116,33 @@ function showWeatherData(data) {
   });
 
   weatherForecastEl.innerHTML = otherDayForecast;
+
+   let hourlyForecast = '';
+  data.hourly.forEach((hour, idx) => {
+    hourlyForecast += `
+    <div class="hourly-card">
+    <p class="hourly-degree"><strong>${hour.temp}°C</strong></p>
+    <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
+    <p class="mb-0"><strong>${getFormattedTime(hour.dt)}</strong></p>
+    <p class="mb-0 text-muted" style="font-size: .65rem;">${getFormattedPeriod(hour.dt)}</p>
+    </div>
+    `
+  })
+  document.getElementById('hourly-card').innerHTML = hourlyForecast
 }
 
 document.getElementById('button-search').addEventListener('click', function(){
   let searchQuery = document.getElementById('input-search').value;
-  // console.log('searchQuery: ' + searchQuery);
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${API_KEY}`)
+    geoLocation = searchQuery;
+fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=5&appid=${API_KEY}`)
       .then(res => res.json())
       .then(data => {
-        console.log( "result:",data)
-        let {lat, lon} = data.coord
-
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
+        let {lat, lon} = data[0]
+        latitude = lat;
+        longitude = lon;
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${API_KEY}`)
       .then(res => res.json())
       .then(data => {
-        //console.log('solution = ' + data);
         showWeatherData(data);
       })
       .catch(error => {
@@ -122,68 +156,48 @@ document.getElementById('button-search').addEventListener('click', function(){
       });
 })
 
-function getWeatherData2() {
-  navigator.geolocation.getCurrentPosition((success) => {
-    let { latitude, longitude } = success.coords;
-
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
-      .then(res => res.json())
-      .then(data => {
-        showHourlyForecast(data.hourly);
-      })
-      .catch(error => {
-        console.log('Error fetching weather data:', error);
-      });
-  });
-}
-
-function showHourlyForecast(hourlyData) {
-  const carouselInner = document.querySelector('.carousel-inner');
-
-  // Clear previous forecast items
-  carouselInner.innerHTML = '';
-
-  // Loop through hourly data and create forecast items
-  hourlyData.forEach((hour, index) => {
-    // Set the active class for the first item
-    const isActive = index === 0 ? 'active' : '';
-
-    // Create the forecast item HTML
-    const forecastItemHTML = `
-      <div class="carousel-item ${isActive}">
-        <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
-          <div class="flex-column">
-            <p class="small"><strong>${hour.temp}°C</strong></p>
-            <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
-            <p class="mb-0"><strong>${getFormattedTime(hour.dt)}</strong></p>
-            <p class="mb-0 text-muted" style="font-size: .65rem;">${getFormattedPeriod(hour.dt)}</p>
-          </div>
-          <!-- Add more forecast item elements here as needed -->
-        </div>
-      </div>
-    `;
-
-    // Append the forecast item to the carousel inner
-    carouselInner.innerHTML += forecastItemHTML;
-  });
-
-  // Show the carousel
-  const carousel = document.querySelector('#demo2');
-  carousel.style.display = 'block';
-}
-
 function getFormattedTime(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const time = new Date(timestamp * 1000);
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
 function getFormattedPeriod(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const hours = date.getHours();
-  return hours >= 12 ? 'PM' : 'AM';
+  const time = new Date(timestamp * 1000);
+  const hours = time.getHours();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  return ampm;
+}
+
+
+
+function getFormattedDate(timestamp, timezone) {
+      let options = {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZone: timezone
+      };
+      let newDate = new Date(timestamp * 1000).toLocaleString('en-US', options);
+      let parts = newDate.split(','); // Split the string into parts based on the comma separator
+      let dayOfWeek = parts[0].trim(); // Extract the day of the week and trim any leading or trailing spaces
+      let monthAndDay = parts[1].trim().split(' '); // Extract the month and day, and split them based on the space separator
+      let month = monthAndDay[0]; // Extract the month
+      let day = monthAndDay[1]; // Extract the day
+      let hour = parseInt(newDate.split(':')[0].split(', ')[3]);
+      let hoursIn12HrFormat = hour >= 13 ? hour % 12 : hour;
+      let minutes = parseInt(newDate.split(':')[1]);
+      let ampm = newDate.split(' ')[newDate.split(' ').length - 1];
+      timeEl.innerHTML = (hoursIn12HrFormat < 10 ? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + `<span id="am-pm">${ampm}</span>`;
+      dateEl.innerHTML = dayOfWeek+ ', ' + day + ' ' + month;
 }
 
 
 // 49cc8c821cd2aff9af04c9f98c36eb74
+
+

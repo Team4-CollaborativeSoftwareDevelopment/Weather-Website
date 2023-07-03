@@ -63,8 +63,13 @@ body {
   background: linear-gradient(to right, #935CA9, #7363C5);
   font-family: 'Poppins', sans-serif;
   overflow-y: auto;
+  padding-bottom: 30px;
   height: 100vh;
 }
+
+/* .mid-body {
+  margin-bottom: 200px;
+} */
   
 /* .card {
   display: flex;
@@ -96,7 +101,12 @@ body {
 
   .custom-css .card-img{
   height: fit-content;  
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+   }
+
+   .custom-body .body .title{
+    margin-top: 10px;
    }
 
    .card1{
@@ -165,23 +175,142 @@ body {
 
   } */
 
+  .cards-container{
+    /* background-color: rgb(147, 196, 33); */
+    width: 100%;
+    margin-top: 420px;
+    padding-bottom: 20px;
+    display: flex;
+    overflow-x: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+    align-items: center;
+    width: 12rem;
+    height: 18rem;
+    background-color: aqua;
+  }
+
+  .img-container img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .img-container div {
+    padding-left: 10px;
+  }
+
 
   @media (max-width: 848px) {
+    .navbar-brand{
+      margin-bottom: 250px;
+    }
+
     .custom-css{
       width: 80%;
     }
     .card1{
-      margin-left: 20px;
+      margin-left: 80px;
     }
     .card2{
+      margin-left: 80px;
       position: static;
     }
 
     .card4{
+      margin-left: 80px;
       position: static;
     }
 
     .card3{
+      margin-left: 80px;
       margin-top: 25px;
+    }
+
+    .custom-css .card-img{
+      height: 315px;
+      }
+
+      .cards-container{
+        margin-top: 30px;
+        /* overflow-y: hidden; */
+      }
+
+      .container {
+        height: 300px;
+      }
+  }
+
+  @media (max-width: 767px) {
+    .custom-css .card-img{
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 670px) {
+    .card1{
+      margin-left: 70px;
+    }
+    .card2{
+      margin-left: 70px;
+    }
+
+    .card4{
+      margin-left: 70px;
+    }
+
+    .card3{
+      margin-left: 70px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card1{
+      margin-left: 50px;
+    }
+    .card2{
+      margin-left: 50px;
+    }
+
+    .card4{
+      margin-left: 50px;
+    }
+
+    .card3{
+      margin-left: 50px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .custom-col {
+      width: 50%;
+    }
+    .custom-body{
+      width: 50%;
+    }
+
+    .custom-body .body .title{
+      margin-top: 0px;
+     }
+
+    .card1{
+      margin-left: 40px;
+    }
+    .card2{
+      margin-left: 40px;
+    }
+
+    .card4{
+      margin-left: 40px;
+    }
+
+    .card3{
+      margin-left: 40px;
     }
   }
