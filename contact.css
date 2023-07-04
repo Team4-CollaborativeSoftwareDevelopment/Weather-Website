@@ -27,6 +27,7 @@
       height: 100%;
       overflow-y: auto;
       transition: left 0.3s ease-in-out;
+	  z-index: 5;
     }
   
     .navbar-collapse.show {
@@ -55,7 +56,12 @@
     }
   }
   
-
+  body {
+	background: linear-gradient(to right, #935CA9, #7363C5);
+	font-family: 'Poppins', sans-serif;
+	overflow-y: auto;
+	height: 100vh;
+  }
 
   .contact_us_6 * {
 	font-family: Nunito, sans-serif;
@@ -123,7 +129,7 @@
 	width: 35%;
 	padding-bottom: 10px;
 	padding-left: 30px;
-	background-color: #a03bffcc;
+	background-color: #fff;
 	position: absolute;
 	height: 950px;
 	right: 0px;
@@ -264,7 +270,7 @@
   
   .contact_us_6 .submit-btn {
 	width: 98%;
-	background-color: #a03bffcc;
+	background: linear-gradient(to right, #935CA9, #7363C5);
 	height: 60px;
 	font-size: 20px;
 	font-weight: 700;
@@ -358,13 +364,14 @@
 	width: 100%;
 	height: 520px;
 	background-color: #d9d9d9;
-	background-image: url("https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/sc23.png");
+	background-image: url("images/berlinmap.png");
 	background-size: cover;
+	border-radius: 20px;
 	background-position-x: 50%;
 	background-position-y: 50%;
   }
   
-   
+
   
   .contact_us_6 .map-part {
 	width: 100%;
@@ -381,7 +388,7 @@
 	margin-right: 0px;
 	margin-bottom: 10px;
 	margin-left: 0px;
-	color: #a03bffcc;
+	color: #ffffff;
   }
   
    
@@ -392,6 +399,7 @@
 	margin-right: 0px;
 	margin-bottom: 20px;
 	margin-left: 0px;
+	color: white;
   }
   
    
@@ -404,6 +412,7 @@
 	width: 230px;
 	display: flex;
 	justify-content: flex-start;
+
   }
   
    
@@ -424,6 +433,8 @@
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
+	background-color: white;
+	border-radius: 5px;
   }
   
    
@@ -431,6 +442,7 @@
   .contact_us_6 .social-icon-link {
 	margin: 0 25px 0 0;
 	padding: 0 0 0 0;
+	
   }
   
    

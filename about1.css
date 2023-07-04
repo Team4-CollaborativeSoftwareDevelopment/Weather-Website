@@ -67,37 +67,7 @@ body {
   height: 100vh;
 }
 
-/* .mid-body {
-  margin-bottom: 200px;
-} */
-  
-/* .card {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  background-color: white;
-  width: 510px;
-  height: 250px;
-  border-radius: 20px;
-}
 
-.image {
-  flex: 0 0 255px;
-}
-
-.image .pic {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 20px 0 0 20px;
-}
-
-.text {
-  flex: 1;
-  padding: 20px;
-}
-
-   */
 
   .custom-css .card-img{
   height: fit-content;  
@@ -194,7 +164,7 @@ body {
     align-items: center;
     width: 12rem;
     height: 18rem;
-    background-color: aqua;
+    background-color: rgba(255, 255, 255, 0.6);
   }
 
   .img-container img {

@@ -184,11 +184,11 @@ function getFormattedDate(timestamp, timezone) {
         timeZone: timezone
       };
       let newDate = new Date(timestamp * 1000).toLocaleString('en-US', options);
-      let parts = newDate.split(','); // Split the string into parts based on the comma separator
-      let dayOfWeek = parts[0].trim(); // Extract the day of the week and trim any leading or trailing spaces
-      let monthAndDay = parts[1].trim().split(' '); // Extract the month and day, and split them based on the space separator
-      let month = monthAndDay[0]; // Extract the month
-      let day = monthAndDay[1]; // Extract the day
+      let parts = newDate.split(','); 
+      let dayOfWeek = parts[0].trim(); 
+      let monthAndDay = parts[1].trim().split(' '); 
+      let month = monthAndDay[0]; 
+      let day = monthAndDay[1]; 
       let hour = parseInt(newDate.split(':')[0].split(', ')[3]);
       let hoursIn12HrFormat = hour >= 13 ? hour % 12 : hour;
       let minutes = parseInt(newDate.split(':')[1]);
@@ -197,7 +197,7 @@ function getFormattedDate(timestamp, timezone) {
       dateEl.innerHTML = dayOfWeek+ ', ' + day + ' ' + month;
 }
 
-
+// Api key backup:
 // 49cc8c821cd2aff9af04c9f98c36eb74
 
 
